@@ -51,6 +51,7 @@ logger.info("Finished discovery")
 for room in client.discovered.get_rooms():
 
     print(f"\n{room.name} has {len(room.devices)} devices")
+    print(room.devices)
     if room.heating:
         print(
             f"Current temp: {room.heating.current_temp}, target: {room.heating.target_temp}"
@@ -70,10 +71,12 @@ for room in client.discovered.get_rooms():
             print(f"  - temp: {device.current_env_temp}")
             print(f"  - humidity: {device.humidity_level}")
 
-bathroom = client.discovered.find_room_by_name("Bathroom")
+woko = client.discovered.find_room_by_name("WoKo")
 
-if not bathroom:
-    print("No discovered room called 'Bathroom'")
+if not woko:
+    print("No discovered room called 'WoKo'")
     sys.exit(1)
 
-client.set_temp(next(iter(bathroom.devices.items()))[0], 0)
+client.set_blind_level(woko.devices["Blind_22"].identifier, 0)
+
+# print(f"\nFound WoKo room with {(woko.devices["Blind_22"].blind_level)}% blind level")
