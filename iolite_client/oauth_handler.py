@@ -11,7 +11,7 @@ import requests
 logger = logging.getLogger(__name__)
 
 BASE_URL = "https://remote.iolite.de"
-CLIENT_ID = "deuwo_mia_app"
+CLIENT_ID = "iq_diwa_app"
 
 
 class OAuthHandlerHelper:

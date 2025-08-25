@@ -15,6 +15,7 @@ websockets = "*"
 requests = "*"
 aiohttp = "^3.7.4"
 single-source = ">=0.2,<0.4"
+environs = "9.5.0"
 
 [tool.poetry.extras]
 dev = ["environs"]

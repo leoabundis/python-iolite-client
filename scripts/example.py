@@ -29,7 +29,7 @@ access_token = oauth_storage.fetch_access_token()
 if not access_token:
     access_token = oauth_handler.get_access_token(CODE, NAME)
     oauth_storage.store_access_token(access_token)
-
+print(access_token)
 sid = oauth_wrapper.get_sid(access_token)
 
 print("------------------")
@@ -41,6 +41,8 @@ print("------------------")
 
 # Init client
 client = Client(sid, USERNAME, PASSWORD)
+
+print(sid)
 
 logger.info("Connecting to client")
 
@@ -72,11 +74,16 @@ for room in client.discovered.get_rooms():
             print(f"  - humidity: {device.humidity_level}")
 
 woko = client.discovered.find_room_by_name("WoKo")
+room = client.discovered.find_room_by_name("Schlafen")
+hall = client.discovered.find_room_by_name("Flur")
 
 if not woko:
     print("No discovered room called 'WoKo'")
     sys.exit(1)
 
-client.set_blind_level(woko.devices["Blind_22"].identifier, 0)
+#client.set_blind_level(woko.devices["Blind_22"].identifier, 100)
+#client.set_blind_level(woko.devices["Blind_21"].identifier, 0)
+#client.set_blind_level(hall.devices["Blind_11"].identifier, 100)
+#client.set_blind_level(room.devices["Blind_41"].identifier, 100)
 
 # print(f"\nFound WoKo room with {(woko.devices["Blind_22"].blind_level)}% blind level")
